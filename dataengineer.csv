@@ -1,0 +1,120 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Feb 20 12:09:08 2021
+
+@author: javier
+"""
+# import zipfile
+from zipfile import ZipFile
+
+# path to the zipfile
+file = './Documents/drive-download-20210220T171123Z-001.zip'
+
+# read zipfile and extract contents
+with ZipFile (file, 'r') as zip:
+    zip.printdir()
+    zip.extractall()
+
+#Once I have converted dataframes to .csv files, I comment ##
+#out the code where I imported the files out of their zipfiles.
+
+# import pandas
+# import json
+import pandas as pd
+import numpy as np
+import json
+
+
+cnames=['c0','c1']
+
+#reading directly into a DataFrame usind pd.read_json()
+path = './acervo_1556_1899.json'
+#write DataFrame
+df = pd.read_json(path)
+#write a csv file
+df.to_csv('Book1.csv')
+
+#read a csv file
+csv_file=pd.read_csv('Book1.csv',
+                      header=None,
+                      index_col=0,
+                      sep='\t',
+                      names=cnames)
+
+#write an excel file
+csv_file.to_excel('Book1.xlsx')
+#read an excel file
+excel_file=pd.read_excel('Book1.xlsx',    
+                      sheet_name='Sheet1',
+                      header=None,
+                      index_col=0,
+                      names=cnames)
+
+#writing data in designated excel file, in Sheet3
+writer=pd.ExcelWriter(path='Book9.xlsx')
+
+excel_file.to_excel(writer,sheet_name='Sheet3')
+
+writer.save()
+
+#reading directly into a DataFrame usind pd.read_json()
+path2 = './acervo_1900_1979.json'
+#write DataFrame
+df2 = pd.read_json(path2)
+#write a csv file
+df2.to_csv('Book2.csv')
+
+#read a csv file
+csv_file2=pd.read_csv('Book2.csv',
+                      header=None,
+                      index_col=0,
+                      sep='\t',
+                      names=cnames)
+
+#write an excel file
+csv_file2.to_excel('Book2.xlsx')
+#read an excel file
+excel_file2=pd.read_excel('Book2.xlsx',    
+                      sheet_name='Sheet1',
+                      header=None,
+                      index_col=0,
+                      names=cnames)
+
+#writing data in designated excel file, in Sheet2
+writer=pd.ExcelWriter(path='Book9.xlsx')
+
+excel_file2.to_excel(writer,sheet_name='Sheet2')
+
+writer.save()
+
+# reading directly into a DataFrame usind pd.read_json()
+path3 = './acervo_1980_1989.json'
+# write DataFrame
+df3 = pd.read_json(path3)
+# write a csv file
+df3.to_csv('Book3.csv')
+
+#read a csv file
+csv_file3=pd.read_csv('Book3.csv',
+                      header=None,
+                      index_col=0,
+                      sep='\t',
+                      names=cnames)
+
+#write an excel file
+csv_file3.to_excel('Book3.xlsx')
+#read an excel file
+excel_file3=pd.read_excel('Book3.xlsx',    
+                      sheet_name='Sheet1',
+                      header=None,
+                      index_col=0,
+                      names=cnames)
+
+#writing data in designated excel file, in Sheet3
+writer=pd.ExcelWriter(path='Book9.xlsx')
+
+excel_file3.to_excel(writer,sheet_name='Sheet3')
+
+writer.save()
+
